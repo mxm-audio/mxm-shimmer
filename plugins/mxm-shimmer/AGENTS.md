@@ -178,8 +178,7 @@ cargo test -p mxm-player --test t5_control_map
 
 Manual gates still required: broader owner listening, native design-system §15 review in both themes,
 MXM Player audition, and Bitwig mono/stereo automation/state/tail/reset checks. Linux and macOS are
-not verified on the Windows development machine. *Since the split (2026-10-06):* the tests run on
-Linux in WSL before a push and on macOS by CI on `v*` tags; the manual gates there are still open.
+not verified on the Windows development machine. *Since the split (2026-10-06):* Linux and macOS are checked later, together, and by CI on `v*` tags; the manual gates there are still open.
 
 # Child DOX Index
 

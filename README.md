@@ -15,8 +15,8 @@ cargo xtask bundle mxm-shimmer --release   # -> target/bundled/mxm-shimmer.clap
 cargo test
 ```
 
-Copy `target/bundled/mxm-shimmer.clap` into your CLAP folder. The official, signed builds are
-at [mxm.dk](https://mxm.dk).
+Copy `target/bundled/mxm-shimmer.clap` into your CLAP folder. This is pre-alpha:
+nothing is released, so there are no official builds yet.
 
 ## Licence
 
