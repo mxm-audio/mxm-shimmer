@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "plugin": "dk.mxm.mxm-shimmer",
+  "name": "Ascending hall",
+  "category": "pad",
+  "_comment": "`v` is the value and is authoritative. `text` is this plugin's own formatting of it, kept so the file can be read, and is never loaded.",
+  "params": {
+    "diffusion": {
+      "v": 0.9,
+      "text": "90 %"
+    },
+    "freeze": {
+      "v": 0.0,
+      "text": "Off"
+    },
+    "highcut": {
+      "v": 0.49065432,
+      "text": "6.50 kHz"
+    },
+    "lowcut": {
+      "v": 0.33381945,
+      "text": "240 Hz"
+    },
+    "mix": {
+      "v": 0.44,
+      "text": "44 %"
+    },
+    "moddepth": {
+      "v": 0.22632267,
+      "text": "1 ms"
+    },
+    "modrate": {
+      "v": 0.2276666,
+      "text": "0.10 Hz"
+    },
+    "modsync": {
+      "v": 0.0,
+      "text": "Off"
+    },
+    "placement": {
+      "v": 0.5,
+      "text": "Regen"
+    },
+    "predelay": {
+      "v": 0.3670496,
+      "text": "25 ms"
+    },
+    "predelaysync": {
+      "v": 0.0,
+      "text": "Off"
+    },
+    "regen": {
+      "v": 0.58,
+      "text": "58 %"
+    },
+    "reverse": {
+      "v": 0.0,
+      "text": "Forward"
+    },
+    "shift": {
+      "v": 0.5,
+      "text": "12 st"
+    },
+    "shimmer": {
+      "v": 0.72,
+      "text": "72 %"
+    },
+    "size": {
+      "v": 0.74,
+      "text": "74 %"
+    }
+  },
+  "state": null
+}

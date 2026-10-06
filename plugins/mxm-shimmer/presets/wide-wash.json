@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "plugin": "dk.mxm.mxm-shimmer",
+  "name": "Wide wash",
+  "category": "pad",
+  "_comment": "`v` is the value and is authoritative. `text` is this plugin's own formatting of it, kept so the file can be read, and is never loaded.",
+  "params": {
+    "diffusion": {
+      "v": 0.98,
+      "text": "98 %"
+    },
+    "freeze": {
+      "v": 0.0,
+      "text": "Off"
+    },
+    "highcut": {
+      "v": 0.67158914,
+      "text": "10.50 kHz"
+    },
+    "lowcut": {
+      "v": 0.38925818,
+      "text": "350 Hz"
+    },
+    "mix": {
+      "v": 0.6,
+      "text": "60 %"
+    },
+    "moddepth": {
+      "v": 0.96600586,
+      "text": "8 ms"
+    },
+    "modrate": {
+      "v": 0.3271076,
+      "text": "0.28 Hz"
+    },
+    "modsync": {
+      "v": 0.0,
+      "text": "Off"
+    },
+    "placement": {
+      "v": 1.0,
+      "text": "Both"
+    },
+    "predelay": {
+      "v": 0.47406572,
+      "text": "45 ms"
+    },
+    "predelaysync": {
+      "v": 0.0,
+      "text": "Off"
+    },
+    "regen": {
+      "v": 0.38,
+      "text": "38 %"
+    },
+    "reverse": {
+      "v": 0.0,
+      "text": "Forward"
+    },
+    "shift": {
+      "v": 0.29166666,
+      "text": "7 st"
+    },
+    "shimmer": {
+      "v": 0.52,
+      "text": "52 %"
+    },
+    "size": {
+      "v": 0.92,
+      "text": "92 %"
+    }
+  },
+  "state": null
+}

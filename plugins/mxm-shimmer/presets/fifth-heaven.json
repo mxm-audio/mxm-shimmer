@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "plugin": "dk.mxm.mxm-shimmer",
+  "name": "Fifth heaven",
+  "category": "pad",
+  "_comment": "`v` is the value and is authoritative. `text` is this plugin's own formatting of it, kept so the file can be read, and is never loaded.",
+  "params": {
+    "diffusion": {
+      "v": 0.94,
+      "text": "94 %"
+    },
+    "freeze": {
+      "v": 0.0,
+      "text": "Off"
+    },
+    "highcut": {
+      "v": 0.46451718,
+      "text": "6.00 kHz"
+    },
+    "lowcut": {
+      "v": 0.3093769,
+      "text": "200 Hz"
+    },
+    "mix": {
+      "v": 0.5,
+      "text": "50 %"
+    },
+    "moddepth": {
+      "v": 0.18694682,
+      "text": "0 ms"
+    },
+    "modrate": {
+      "v": 0.17422979,
+      "text": "0.05 Hz"
+    },
+    "modsync": {
+      "v": 0.0,
+      "text": "Off"
+    },
+    "placement": {
+      "v": 0.5,
+      "text": "Regen"
+    },
+    "predelay": {
+      "v": 0.42494297,
+      "text": "35 ms"
+    },
+    "predelaysync": {
+      "v": 0.0,
+      "text": "Off"
+    },
+    "regen": {
+      "v": 0.58,
+      "text": "58 %"
+    },
+    "reverse": {
+      "v": 1.0,
+      "text": "Reverse"
+    },
+    "shift": {
+      "v": 0.29166666,
+      "text": "7 st"
+    },
+    "shimmer": {
+      "v": 0.88,
+      "text": "88 %"
+    },
+    "size": {
+      "v": 0.88,
+      "text": "88 %"
+    }
+  },
+  "state": null
+}

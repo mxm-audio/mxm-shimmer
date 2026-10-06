@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "plugin": "dk.mxm.mxm-shimmer",
+  "name": "Dark ascent",
+  "category": "pad",
+  "_comment": "`v` is the value and is authoritative. `text` is this plugin's own formatting of it, kept so the file can be read, and is never loaded.",
+  "params": {
+    "diffusion": {
+      "v": 0.93,
+      "text": "93 %"
+    },
+    "freeze": {
+      "v": 0.0,
+      "text": "Off"
+    },
+    "highcut": {
+      "v": 0.25832385,
+      "text": "2.80 kHz"
+    },
+    "lowcut": {
+      "v": 0.46580797,
+      "text": "550 Hz"
+    },
+    "mix": {
+      "v": 0.48,
+      "text": "48 %"
+    },
+    "moddepth": {
+      "v": 0.29114762,
+      "text": "1 ms"
+    },
+    "modrate": {
+      "v": 0.2189905,
+      "text": "0.09 Hz"
+    },
+    "modsync": {
+      "v": 0.0,
+      "text": "Off"
+    },
+    "placement": {
+      "v": 0.5,
+      "text": "Regen"
+    },
+    "predelay": {
+      "v": 0.5173362,
+      "text": "55 ms"
+    },
+    "predelaysync": {
+      "v": 0.0,
+      "text": "Off"
+    },
+    "regen": {
+      "v": 0.6,
+      "text": "60 %"
+    },
+    "reverse": {
+      "v": 0.0,
+      "text": "Forward"
+    },
+    "shift": {
+      "v": 0.7916667,
+      "text": "19 st"
+    },
+    "shimmer": {
+      "v": 0.66,
+      "text": "66 %"
+    },
+    "size": {
+      "v": 0.94,
+      "text": "94 %"
+    }
+  },
+  "state": null
+}

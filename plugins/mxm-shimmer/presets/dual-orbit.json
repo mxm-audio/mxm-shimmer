@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "plugin": "dk.mxm.mxm-shimmer",
+  "name": "Dual orbit",
+  "category": "fx",
+  "_comment": "`v` is the value and is authoritative. `text` is this plugin's own formatting of it, kept so the file can be read, and is never loaded.",
+  "params": {
+    "diffusion": {
+      "v": 0.48,
+      "text": "48 %"
+    },
+    "freeze": {
+      "v": 0.0,
+      "text": "Off"
+    },
+    "highcut": {
+      "v": 0.60846823,
+      "text": "9.00 kHz"
+    },
+    "lowcut": {
+      "v": 0.36576226,
+      "text": "300 Hz"
+    },
+    "mix": {
+      "v": 0.55,
+      "text": "55 %"
+    },
+    "moddepth": {
+      "v": 0.7346728,
+      "text": "4 ms"
+    },
+    "modrate": {
+      "v": 0.41114357,
+      "text": "0.55 Hz"
+    },
+    "modsync": {
+      "v": 0.0,
+      "text": "Off"
+    },
+    "placement": {
+      "v": 1.0,
+      "text": "Both"
+    },
+    "predelay": {
+      "v": 0.5563555,
+      "text": "65 ms"
+    },
+    "predelaysync": {
+      "v": 0.0,
+      "text": "Off"
+    },
+    "regen": {
+      "v": 0.46,
+      "text": "46 %"
+    },
+    "reverse": {
+      "v": 0.0,
+      "text": "Forward"
+    },
+    "shift": {
+      "v": 0.7916667,
+      "text": "19 st"
+    },
+    "shimmer": {
+      "v": 0.62,
+      "text": "62 %"
+    },
+    "size": {
+      "v": 0.66,
+      "text": "66 %"
+    }
+  },
+  "state": null
+}

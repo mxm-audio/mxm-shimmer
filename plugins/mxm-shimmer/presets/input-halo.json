@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "plugin": "dk.mxm.mxm-shimmer",
+  "name": "Input halo",
+  "category": "pad",
+  "_comment": "`v` is the value and is authoritative. `text` is this plugin's own formatting of it, kept so the file can be read, and is never loaded.",
+  "params": {
+    "diffusion": {
+      "v": 0.82,
+      "text": "82 %"
+    },
+    "freeze": {
+      "v": 0.0,
+      "text": "Off"
+    },
+    "highcut": {
+      "v": 0.730587,
+      "text": "12.00 kHz"
+    },
+    "lowcut": {
+      "v": 0.5119406,
+      "text": "700 Hz"
+    },
+    "mix": {
+      "v": 0.38,
+      "text": "38 %"
+    },
+    "moddepth": {
+      "v": 0.44961745,
+      "text": "2 ms"
+    },
+    "modrate": {
+      "v": 0.31025538,
+      "text": "0.24 Hz"
+    },
+    "modsync": {
+      "v": 0.0,
+      "text": "Off"
+    },
+    "placement": {
+      "v": 0.0,
+      "text": "Input"
+    },
+    "predelay": {
+      "v": 0.0,
+      "text": "0 ms"
+    },
+    "predelaysync": {
+      "v": 0.0,
+      "text": "Off"
+    },
+    "regen": {
+      "v": 0.3,
+      "text": "30 %"
+    },
+    "reverse": {
+      "v": 0.0,
+      "text": "Forward"
+    },
+    "shift": {
+      "v": 0.5,
+      "text": "12 st"
+    },
+    "shimmer": {
+      "v": 0.9,
+      "text": "90 %"
+    },
+    "size": {
+      "v": 0.52,
+      "text": "52 %"
+    }
+  },
+  "state": null
+}

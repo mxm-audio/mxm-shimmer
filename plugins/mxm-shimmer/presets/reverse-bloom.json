@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "plugin": "dk.mxm.mxm-shimmer",
+  "name": "Reverse bloom",
+  "category": "fx",
+  "_comment": "`v` is the value and is authoritative. `text` is this plugin's own formatting of it, kept so the file can be read, and is never loaded.",
+  "params": {
+    "diffusion": {
+      "v": 0.9,
+      "text": "90 %"
+    },
+    "freeze": {
+      "v": 0.0,
+      "text": "Off"
+    },
+    "highcut": {
+      "v": 0.51579773,
+      "text": "7.00 kHz"
+    },
+    "lowcut": {
+      "v": 0.3556339,
+      "text": "280 Hz"
+    },
+    "mix": {
+      "v": 0.52,
+      "text": "52 %"
+    },
+    "moddepth": {
+      "v": 0.15610257,
+      "text": "0 ms"
+    },
+    "modrate": {
+      "v": 0.19916402,
+      "text": "0.07 Hz"
+    },
+    "modsync": {
+      "v": 0.0,
+      "text": "Off"
+    },
+    "placement": {
+      "v": 1.0,
+      "text": "Both"
+    },
+    "predelay": {
+      "v": 0.69952583,
+      "text": "110 ms"
+    },
+    "predelaysync": {
+      "v": 0.0,
+      "text": "Off"
+    },
+    "regen": {
+      "v": 0.52,
+      "text": "52 %"
+    },
+    "reverse": {
+      "v": 1.0,
+      "text": "Reverse"
+    },
+    "shift": {
+      "v": 0.5,
+      "text": "12 st"
+    },
+    "shimmer": {
+      "v": 0.74,
+      "text": "74 %"
+    },
+    "size": {
+      "v": 0.84,
+      "text": "84 %"
+    }
+  },
+  "state": null
+}

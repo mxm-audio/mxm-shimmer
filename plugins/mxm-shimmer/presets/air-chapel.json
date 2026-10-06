@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "plugin": "dk.mxm.mxm-shimmer",
+  "name": "Air chapel",
+  "category": "pad",
+  "_comment": "`v` is the value and is authoritative. `text` is this plugin's own formatting of it, kept so the file can be read, and is never loaded.",
+  "params": {
+    "diffusion": {
+      "v": 0.97,
+      "text": "97 %"
+    },
+    "freeze": {
+      "v": 0.0,
+      "text": "Off"
+    },
+    "highcut": {
+      "v": 0.93811536,
+      "text": "18.00 kHz"
+    },
+    "lowcut": {
+      "v": 0.6308484,
+      "text": "1.20 kHz"
+    },
+    "mix": {
+      "v": 0.4,
+      "text": "40 %"
+    },
+    "moddepth": {
+      "v": 0.47573382,
+      "text": "2 ms"
+    },
+    "modrate": {
+      "v": 0.28081056,
+      "text": "0.18 Hz"
+    },
+    "modsync": {
+      "v": 0.0,
+      "text": "Off"
+    },
+    "placement": {
+      "v": 0.0,
+      "text": "Input"
+    },
+    "predelay": {
+      "v": 0.29387286,
+      "text": "15 ms"
+    },
+    "predelaysync": {
+      "v": 0.0,
+      "text": "Off"
+    },
+    "regen": {
+      "v": 0.34,
+      "text": "34 %"
+    },
+    "reverse": {
+      "v": 1.0,
+      "text": "Reverse"
+    },
+    "shift": {
+      "v": 0.7916667,
+      "text": "19 st"
+    },
+    "shimmer": {
+      "v": 0.96,
+      "text": "96 %"
+    },
+    "size": {
+      "v": 0.7,
+      "text": "70 %"
+    }
+  },
+  "state": null
+}

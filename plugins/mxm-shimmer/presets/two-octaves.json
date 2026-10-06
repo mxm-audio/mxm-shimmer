@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "plugin": "dk.mxm.mxm-shimmer",
+  "name": "Two octaves",
+  "category": "fx",
+  "_comment": "`v` is the value and is authoritative. `text` is this plugin's own formatting of it, kept so the file can be read, and is never loaded.",
+  "params": {
+    "diffusion": {
+      "v": 0.58,
+      "text": "58 %"
+    },
+    "freeze": {
+      "v": 0.0,
+      "text": "Off"
+    },
+    "highcut": {
+      "v": 0.8730437,
+      "text": "16.00 kHz"
+    },
+    "lowcut": {
+      "v": 0.5644815,
+      "text": "900 Hz"
+    },
+    "mix": {
+      "v": 0.42,
+      "text": "42 %"
+    },
+    "moddepth": {
+      "v": 0.24955152,
+      "text": "1 ms"
+    },
+    "modrate": {
+      "v": 0.48481444,
+      "text": "0.90 Hz"
+    },
+    "modsync": {
+      "v": 0.0,
+      "text": "Off"
+    },
+    "placement": {
+      "v": 0.0,
+      "text": "Input"
+    },
+    "predelay": {
+      "v": 0.0,
+      "text": "0 ms"
+    },
+    "predelaysync": {
+      "v": 0.0,
+      "text": "Off"
+    },
+    "regen": {
+      "v": 0.3,
+      "text": "30 %"
+    },
+    "reverse": {
+      "v": 0.0,
+      "text": "Forward"
+    },
+    "shift": {
+      "v": 1.0,
+      "text": "24 st"
+    },
+    "shimmer": {
+      "v": 1.0,
+      "text": "100 %"
+    },
+    "size": {
+      "v": 0.38,
+      "text": "38 %"
+    }
+  },
+  "state": null
+}

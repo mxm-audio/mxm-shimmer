@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "plugin": "dk.mxm.mxm-shimmer",
+  "name": "Long bloom",
+  "category": "pad",
+  "_comment": "`v` is the value and is authoritative. `text` is this plugin's own formatting of it, kept so the file can be read, and is never loaded.",
+  "params": {
+    "diffusion": {
+      "v": 0.99,
+      "text": "99 %"
+    },
+    "freeze": {
+      "v": 0.0,
+      "text": "Off"
+    },
+    "highcut": {
+      "v": 0.42025378,
+      "text": "5.20 kHz"
+    },
+    "lowcut": {
+      "v": 0.26531497,
+      "text": "140 Hz"
+    },
+    "mix": {
+      "v": 0.56,
+      "text": "56 %"
+    },
+    "moddepth": {
+      "v": 0.13850877,
+      "text": "0 ms"
+    },
+    "modrate": {
+      "v": 0.13861798,
+      "text": "0.03 Hz"
+    },
+    "modsync": {
+      "v": 0.0,
+      "text": "Off"
+    },
+    "placement": {
+      "v": 0.5,
+      "text": "Regen"
+    },
+    "predelay": {
+      "v": 0.7522865,
+      "text": "130 ms"
+    },
+    "predelaysync": {
+      "v": 0.0,
+      "text": "Off"
+    },
+    "regen": {
+      "v": 0.67,
+      "text": "67 %"
+    },
+    "reverse": {
+      "v": 0.0,
+      "text": "Forward"
+    },
+    "shift": {
+      "v": 0.5,
+      "text": "12 st"
+    },
+    "shimmer": {
+      "v": 0.68,
+      "text": "68 %"
+    },
+    "size": {
+      "v": 0.99,
+      "text": "99 %"
+    }
+  },
+  "state": null
+}

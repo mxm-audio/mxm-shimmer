@@ -1,0 +1,11 @@
+[package]
+name = "mxm-shimmer-dsp"
+description = "Framework-free DSP for mxm-shimmer: a swept-delay pitch shifter in a bounded reverb loop"
+version.workspace = true
+edition.workspace = true
+rust-version = "1.87"
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+
+[dependencies]

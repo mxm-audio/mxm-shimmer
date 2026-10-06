@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "plugin": "dk.mxm.mxm-shimmer",
+  "name": "Plain hall",
+  "category": "fx",
+  "_comment": "`v` is the value and is authoritative. `text` is this plugin's own formatting of it, kept so the file can be read, and is never loaded.",
+  "params": {
+    "diffusion": {
+      "v": 0.92,
+      "text": "92 %"
+    },
+    "freeze": {
+      "v": 0.0,
+      "text": "Off"
+    },
+    "highcut": {
+      "v": 0.49065432,
+      "text": "6.50 kHz"
+    },
+    "lowcut": {
+      "v": 0.22752842,
+      "text": "100 Hz"
+    },
+    "mix": {
+      "v": 0.34,
+      "text": "34 %"
+    },
+    "moddepth": {
+      "v": 0.6119969,
+      "text": "3 ms"
+    },
+    "modrate": {
+      "v": 0.34235963,
+      "text": "0.32 Hz"
+    },
+    "modsync": {
+      "v": 0.0,
+      "text": "Off"
+    },
+    "placement": {
+      "v": 0.0,
+      "text": "Input"
+    },
+    "predelay": {
+      "v": 0.318145,
+      "text": "18 ms"
+    },
+    "predelaysync": {
+      "v": 0.0,
+      "text": "Off"
+    },
+    "regen": {
+      "v": 0.46,
+      "text": "46 %"
+    },
+    "reverse": {
+      "v": 0.0,
+      "text": "Forward"
+    },
+    "shift": {
+      "v": 0.5,
+      "text": "12 st"
+    },
+    "shimmer": {
+      "v": 0.0,
+      "text": "0 %"
+    },
+    "size": {
+      "v": 0.76,
+      "text": "76 %"
+    }
+  },
+  "state": null
+}

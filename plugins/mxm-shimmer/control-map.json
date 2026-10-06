@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "_comment": [
+    "Which of mxm-shimmer's parameters fill the collection's control roles.",
+    "Roles come from docs/MXM_CONTROL_MAP.md, which is normative; parameters are named by",
+    "their permanent string id, never by display name.",
+    "",
+    "Mix fills the existing fx.reverb role: it is how much reverb is in what you hear.",
+    "The seven dedicated roles occupy page 12 and leave its eighth slot free deliberately.",
+    "Diffusion, Mod Rate, Mod Depth, Low Cut, High Cut and Pre-delay are stored space-shaping",
+    "controls rather than the controls reached for while the effect plays; they remain automatable",
+    "and on the panel. Mod Rate and Mod Depth join that group for the same reason, even though Mod",
+    "Depth measurably shortens the tail: it is set once for a space, not played."
+  ],
+  "instruments": [
+    {
+      "clap_id": "dk.mxm.mxm-shimmer",
+      "name": "mxm-shimmer",
+      "params": {
+        "fx.reverb": "mix",
+        "fx.shimmer_amount": "shimmer",
+        "fx.shimmer_regen": "regen",
+        "fx.shimmer_shift": "shift",
+        "fx.shimmer_placement": "placement",
+        "fx.shimmer_reverse": "reverse",
+        "fx.shimmer_size": "size",
+        "fx.shimmer_freeze": "freeze"
+      }
+    }
+  ]
+}
