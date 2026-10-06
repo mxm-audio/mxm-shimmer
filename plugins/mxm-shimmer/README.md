@@ -49,4 +49,5 @@ beside it.
 
 ## Licence
 
-MIT — see [`LICENSE`](LICENSE). No third-party implementation code or constants are used.
+GPL-3.0-or-later — see the repository's [`LICENSE`](../../LICENSE) at its root. No third-party
+implementation code or constants are used.

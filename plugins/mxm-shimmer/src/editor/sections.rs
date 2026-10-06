@@ -271,7 +271,7 @@ pub fn card(ui: &Ui, index: usize, params: &MxmShimmerParams) -> Node<Leaf> {
 }
 
 /// Everything a leaf draws with, and the shimmer level read once before the frame
-/// (`plugins/AGENTS.md`: destructive telemetry is read once).
+/// (mxm-kit's `docs/plugin-conventions.md`, *Editor contract*: destructive telemetry is read once).
 pub struct Live<'a, 'b> {
     pub params: &'a MxmShimmerParams,
     pub setter: &'a ParamSetter<'b>,

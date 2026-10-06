@@ -81,7 +81,8 @@ uses `mxm-ui`'s shared telemetry canvas/stroke tokens, publishes an accessibilit
 explicit Off and Held text. Every parameter is bound exactly once, has a tooltip, and brackets host
 gestures through `editor/binding.rs`. Effects carry no developer-category CC path.
 
-**Every card is a `mxm_ui::tree`** (`crates/ui/AGENTS.md`, *A card body as data*; in mxm-kit).
+**Every card is a `mxm_ui::tree`** (`crates/ui/AGENTS.md`, *A card body as data*; in mxm-kit, where
+it is now [`crates/ui/NOTES.md`](https://github.com/mxm-audio/mxm-kit/blob/main/crates/ui/NOTES.md#a-card-body-as-data--tree)).
 `sections::card` describes each body once — the collection's knob rows (`mxm_ui::tree::knob_row`),
 Placement and Grain sharing one cell, Freeze's toggle, the bloom `SPACE_2` further from the knobs
 than the card's rhythm — and that description is measured for the card's floor and height and drawn

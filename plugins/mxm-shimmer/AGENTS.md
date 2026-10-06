@@ -20,7 +20,7 @@ Product plan: `plans/plan-mxm-shimmer.md` in the private archive. UI brief:
 - `src/editor.rs`, `src/editor/` — app bar, paging, bindings and Space/Motion/Ascent/Loop cards.
 - `src/telemetry.rs` — lock-free peak and wet-difference telemetry.
 - `control-map.json` — this effect's assignments into the normative collection map.
-- `README.md` — product documentation; the licence is the workspace's (`../../LICENSE`).
+- `README.md` — product documentation; the licence is the repository's root `LICENSE` (`../../LICENSE`).
 
 # Local Contracts
 
@@ -165,16 +165,21 @@ cargo xtask bundle mxm-shimmer --release
 clap-validator validate "target/bundled/mxm-shimmer.clap"
 ```
 
-Also run the player control-map tests after changing `control-map.json` or the collection page:
+Also run the control-map tests after changing `control-map.json` or the collection page. Since the
+split this plugin's map is read in this repository's `effect_chain` host test (its `control_map`
+module); the player's own suites run in mxm-player:
 
 ```bash
+cargo test -p mxm-shimmer-host-tests --test effect_chain
+# in mxm-player:
 cargo test -p mxm-player control_map --lib
 cargo test -p mxm-player --test t5_control_map
 ```
 
 Manual gates still required: broader owner listening, native design-system §15 review in both themes,
 MXM Player audition, and Bitwig mono/stereo automation/state/tail/reset checks. Linux and macOS are
-not verified on the Windows development machine.
+not verified on the Windows development machine. *Since the split (2026-10-06):* the tests run on
+Linux in WSL before a push and on macOS by CI on `v*` tags; the manual gates there are still open.
 
 # Child DOX Index
 

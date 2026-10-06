@@ -1,6 +1,6 @@
 # mxm-shimmer — UI design brief
 
-Required by `MXM_DESIGN_SYSTEM.md` §14. This effect is an original pitch-shifted feedback reverb,
+Required by mxm-kit's [`MXM_DESIGN_SYSTEM.md`](https://github.com/mxm-audio/mxm-kit/blob/main/docs/MXM_DESIGN_SYSTEM.md) §14. This effect is an original pitch-shifted feedback reverb,
 not the interface or constants of a reference product. Technique evidence is
 `research:effects/shimmer-reverb.md`; the installed-emulation study is
 `research:effects/valhalla-shimmer.md`, under the root clean-room ruling.
