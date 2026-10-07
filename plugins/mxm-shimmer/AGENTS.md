@@ -77,8 +77,8 @@ Do not rename or recycle an id. Parameter smoothing advances once per sample.
   network outside the shifter and outer filters, input still open (each new signal shifted once),
   silent and parked when armed on silence, and **no output-derived level normaliser**
   ([NOTES.md § Freeze](NOTES.md#freeze-holds-the-reverbs-experience)).
-- Init is the post-listening-rejection audition setting; owner acceptance of this third listening
-  build remains manual ([NOTES.md § Init](NOTES.md#init)).
+- Init is the post-listening-rejection audition setting, and the owner has accepted this third
+  listening build by ear (2026-10-07) ([NOTES.md § Init](NOTES.md#init)).
 
 **Regen is loop gain, not merely a widened range.** Its top reaches self-oscillation, and the
 threshold falls as Size rises. Every high-Regen preset must therefore be rendered;
@@ -108,8 +108,8 @@ the input scan and mono-output copy required by the negotiated layout.
   normalized parameter axes; the audit's closest descriptor pair must stay above its failing floor.
 - Families come from public maker guidance, not commercial preset data. No commercial factory value
   or name is copied, and factory names contain no reference maker or model identity.
-- The audit guards the bank's spread; it does not approve character, which remains an
-  owner-listening gate ([NOTES.md § Presets](NOTES.md#presets)).
+- The audit guards the bank's spread; it does not approve character, which is the owner's
+  listening (passed, 2026-10-07) ([NOTES.md § Presets](NOTES.md#presets)).
 
 ## Control map
 
@@ -139,7 +139,8 @@ beside both debug and release bundles.
 - Do not move DSP into this crate or add plugin-framework types to `mxm-shimmer-dsp`.
 - Do not claim a compile/test result approved the P3.5 listening defaults. The first sound was
   rejected as a slap delay; the cascaded-diffusor core, two upward channel voices, revised Init,
-  reverse sweep and level-style Shimmer remain subject to owner listening.
+  reverse sweep and level-style Shimmer passed the owner's listening test (2026-10-07). A change to
+  any of them goes back to the owner's ear.
 - Do not add the disputed burst gate without first falsifying the research interpretation as the
   plan requires.
 - Preserve mono/stereo Off vectors and activity status when changing process code.
@@ -176,9 +177,10 @@ cargo test -p mxm-player control_map --lib
 cargo test -p mxm-player --test t5_control_map
 ```
 
-Manual gates still required: broader owner listening, native design-system §15 review in both themes,
-MXM Player audition, and Bitwig mono/stereo automation/state/tail/reset checks. Linux and macOS are
-not verified on the Windows development machine. *Since the split (2026-10-06):* Linux and macOS are checked later, together, and by CI when started by hand; the manual gates there are still open.
+The owner's listening test and Bitwig passed (the owner, 2026-10-07: "the shimmer has passed the
+listening test long ago. And yes worked in bitwig"; [NOTES.md § Owner sign-off](NOTES.md#owner-sign-off)).
+Manual gates still required: native design-system §15 review in both themes and MXM Player
+audition. Linux and macOS are not verified on the Windows development machine. *Since the split (2026-10-06):* Linux and macOS are checked later, together, and by CI when started by hand; the manual gates there are still open.
 
 # Child DOX Index
 

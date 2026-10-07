@@ -117,4 +117,5 @@ tests do not claim those checks passed.
 - [x] The tested logical opening and width floor fit the quarter-4K dimensions at 1×.
 - [ ] Dark/light native-window inspection and measured contrast review.
 - [ ] Fixed-window 100%, 150%, and 200% zoom inspection at recorded DPI.
-- [ ] Owner listening and visual sign-off.
+- [x] Owner listening, and the plugin working in Bitwig (the owner, 2026-10-07).
+- [ ] Owner visual sign-off.

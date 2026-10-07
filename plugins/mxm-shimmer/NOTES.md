@@ -36,7 +36,8 @@ Regen placement, Size 78%, Diffusion 90%, Mod rate 0.16 Hz, Mod depth 1.3 ms, 18
 filters and 30 ms Pre-delay. The two modulation defaults are where the previous fixed law sat at the
 default Diffusion, so making them controls did not move the sound they were set against. The
 shimmer, density and tail are intentionally unmistakable on first insertion; owner acceptance of
-this third listening build remains manual.
+this third listening build remains manual. *The owner has since accepted it (§ [Owner
+sign-off](#owner-sign-off)).*
 
 ## Presets
 
@@ -62,8 +63,8 @@ envelope peaks and 1.3–20.8 s to -60 dB. Its closest descriptor pair is 0.653 
 floor of 0.60. Long bloom is uniquely longest; Plain hall has no shifted branch; Input halo and Two
 octaves are fixed harmonies; the three placements, both grain directions and broad motion settings
 are represented. The audit prevents another parameter-law change from collapsing the bank; it does
-not approve character, which remains an owner-listening gate. No commercial factory value or name
-was copied. Factory names contain no reference maker or model identity.
+not approve character, which remains an owner-listening gate (passed since: § [Owner
+sign-off](#owner-sign-off)). No commercial factory value or name was copied. Factory names contain no reference maker or model identity.
 
 ## Editor
 
@@ -92,3 +93,16 @@ them. The bloom states its own size: `TALL_PLOT_HEIGHT` tall and at least `BLOOM
 filling its card. `take_shimmer` is read once, before the frame.
 `every_card_passes_the_tree_checks_in_every_state` runs the shared checks
 (`mxm_plugin_test::tree_checks`) at Init, Off and Held, and the widest bloom.
+
+## Owner sign-off
+
+**2026-10-07**, the owner: "the shimmer has passed the listening test long ago. And yes worked in
+bitwig". The listening test was held well before that date; it was only recorded then. It
+covers the third listening build's Init, the cascaded-diffusor core, the two upward channel voices,
+the reverse sweep, level-style Shimmer and the factory bank's character, and the plugin working in
+Bitwig.
+
+The gate list it replaced in `AGENTS.md`, as written: *Manual gates still required: broader owner
+listening, native design-system §15 review in both themes, MXM Player audition, and Bitwig
+mono/stereo automation/state/tail/reset checks.* Still open: §15 in both themes and the MXM Player
+audition.
