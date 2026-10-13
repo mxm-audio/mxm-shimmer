@@ -1,5 +1,7 @@
 //! Permanent parameter definitions for `mxm-shimmer`.
 
+use mxm_params::text;
+use mxm_params::text::StringToValue;
 use mxm_preset::PresetIdentity;
 use mxm_shimmer_dsp::Placement;
 use nice_plug::prelude::*;
@@ -28,37 +30,6 @@ impl PlacementChoice {
     }
 }
 
-type ValueToString = Arc<dyn Fn(f32) -> String + Send + Sync>;
-type StringToValue = Arc<dyn Fn(&str) -> Option<f32> + Send + Sync>;
-
-fn percent_to_string() -> ValueToString {
-    Arc::new(|value| format!("{:.0} %", value * 100.0))
-}
-
-fn string_to_percent() -> StringToValue {
-    Arc::new(|text| {
-        text.trim()
-            .trim_end_matches('%')
-            .trim()
-            .parse::<f32>()
-            .ok()
-            .map(|value| value / 100.0)
-    })
-}
-
-fn frequency_to_string() -> ValueToString {
-    Arc::new(|value| {
-        // Choose the unit from the rounded display value. Otherwise 999.9 Hz formats as
-        // `1000 Hz`, parses to exactly 1000, and then formats as `1.00 kHz`; a normalized host
-        // round-trip must be text-idempotent.
-        if value.round() >= 1_000.0 {
-            format!("{:.2} kHz", value / 1_000.0)
-        } else {
-            format!("{value:.0} Hz")
-        }
-    })
-}
-
 fn string_to_frequency() -> StringToValue {
     Arc::new(|text| {
         let lower = text.trim().to_ascii_lowercase();
@@ -72,10 +43,6 @@ fn string_to_frequency() -> StringToValue {
             lower.trim_end_matches("hz").trim().parse::<f32>().ok()
         }
     })
-}
-
-fn time_to_string() -> ValueToString {
-    Arc::new(|seconds| format!("{:.0} ms", seconds * 1_000.0))
 }
 
 fn string_to_time() -> StringToValue {
@@ -147,7 +114,7 @@ pub struct MxmShimmerParams {
 
 impl Default for MxmShimmerParams {
     fn default() -> Self {
-        let percent = || (percent_to_string(), string_to_percent());
+        let percent = || (text::percent(), text::parse_percent());
         let (v2s, s2v) = percent();
         let mix = FloatParam::new("Mix", 0.48, FloatRange::Linear { min: 0.0, max: 1.0 })
             .with_smoother(SmoothingStyle::Linear(20.0))
@@ -202,7 +169,7 @@ impl Default for MxmShimmerParams {
                 },
             )
             .with_smoother(SmoothingStyle::Linear(40.0))
-            .with_value_to_string(time_to_string())
+            .with_value_to_string(text::whole_milliseconds())
             .with_string_to_value(string_to_time()),
             shift: FloatParam::new(
                 "Shift",
@@ -241,7 +208,7 @@ impl Default for MxmShimmerParams {
                 },
             )
             .with_smoother(SmoothingStyle::Linear(40.0))
-            .with_value_to_string(frequency_to_string())
+            .with_value_to_string(text::whole_hertz_then_kilohertz())
             .with_string_to_value(string_to_frequency()),
             high_cut: FloatParam::new(
                 "High cut",
@@ -253,7 +220,7 @@ impl Default for MxmShimmerParams {
                 },
             )
             .with_smoother(SmoothingStyle::Linear(40.0))
-            .with_value_to_string(frequency_to_string())
+            .with_value_to_string(text::whole_hertz_then_kilohertz())
             .with_string_to_value(string_to_frequency()),
             pre_delay: FloatParam::new(
                 "Pre-delay",
@@ -265,7 +232,7 @@ impl Default for MxmShimmerParams {
                 },
             )
             .with_smoother(SmoothingStyle::Linear(30.0))
-            .with_value_to_string(time_to_string())
+            .with_value_to_string(text::whole_milliseconds())
             .with_string_to_value(string_to_time()),
             pre_delay_sync: BoolParam::new("Pre-delay sync", false),
             preset: RwLock::new(PresetIdentity::none()),
@@ -398,38 +365,15 @@ mod tests {
         assert_eq!(params.placement.value(), PlacementChoice::Regen);
     }
 
+    /// **Every parameter's text survives the host's round trip**, with the unit on, across the
+    /// collection's grids and switch points (`mxm_plugin_test::text_checks`), plus both sides of
+    /// the filters' `1.0 kHz` edges.
     #[test]
-    fn formatted_floats_are_idempotent_through_the_normalized_host_round_trip() {
-        let params = MxmShimmerParams::default();
-        let validator_grid = (0..=19).map(|step| step as f32 / 19.0);
-        let frequency_boundaries = [999.4, 999.9, 1_000.0, 1_000.1, 1_004.9, 1_005.1]
-            .into_iter()
-            .flat_map(|plain| {
-                [
-                    params.low_cut.preview_normalized(plain),
-                    params.high_cut.preview_normalized(plain),
-                ]
-            });
-        for (name, param) in [
-            ("mix", &params.mix),
-            ("regen", &params.regen),
-            ("shimmer", &params.shimmer),
-            ("shift", &params.shift),
-            ("size", &params.size),
-            ("diffusion", &params.diffusion),
-            ("lowcut", &params.low_cut),
-            ("highcut", &params.high_cut),
-            ("predelay", &params.pre_delay),
-        ] {
-            for normalized in validator_grid.clone().chain(frequency_boundaries.clone()) {
-                let first = param.normalized_value_to_string(normalized, true);
-                let reparsed = param
-                    .string_to_normalized_value(&first)
-                    .unwrap_or_else(|| panic!("{name} rejected {first:?}"));
-                let second = param.normalized_value_to_string(reparsed, true);
-                assert_eq!(second, first, "{name} text changed at {normalized}");
-            }
-        }
+    fn every_parameter_text_survives_the_hosts_round_trip() {
+        mxm_plugin_test::text_checks::every_text_round_trips(
+            &MxmShimmerParams::default(),
+            &[999.4, 999.9, 1_000.0, 1_000.1, 1_004.9, 1_005.1],
+        );
     }
 
     #[test]

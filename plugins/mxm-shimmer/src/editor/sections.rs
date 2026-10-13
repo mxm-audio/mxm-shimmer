@@ -61,7 +61,7 @@ pub fn all_parameters(params: &MxmShimmerParams) -> Vec<Bound<'_>> {
         )
         .labelled("Depth"),
         Bound::new("shift", &params.shift, "How far up the shimmer is pitched.")
-            .law(mxm_preset::StepLaw::Semitones),
+            .law(mxm_params::StepLaw::Semitones),
         Bound::new("shimmer", &params.shimmer, "How much shimmer."),
         Bound::new("placement", &params.placement, "Where the shimmer happens."),
         Bound::new(
@@ -75,13 +75,13 @@ pub fn all_parameters(params: &MxmShimmerParams) -> Vec<Bound<'_>> {
             &params.low_cut,
             "Keeps the tail from getting muddy.",
         )
-        .law(mxm_preset::StepLaw::Hertz),
+        .law(mxm_params::StepLaw::Hertz),
         Bound::new(
             "highcut",
             &params.high_cut,
             "Darkens the tail as it goes on.",
         )
-        .law(mxm_preset::StepLaw::Hertz),
+        .law(mxm_params::StepLaw::Hertz),
         Bound::new(
             "freeze",
             &params.freeze,
