@@ -84,6 +84,7 @@ impl NiceEguiApp for MxmShimmerApp {
         mxm_ui::theme::apply(&context);
         mxm_ui::typography::apply(&context);
         context.set_theme(mxm_ui::theme::preference());
+        mxm_ui::navigation::use_shared_keymap(&context);
         self.gui_context = Some(gui_context);
         Ok(())
     }
