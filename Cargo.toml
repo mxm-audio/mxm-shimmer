@@ -26,6 +26,7 @@ repository = "https://github.com/mxm-audio/mxm-shimmer"
 # Pinned exactly, as in every MXM repository; Cargo.lock is committed. Own crates by path,
 # the kit's from mxm-kit v0.3.1, another product's from its repository at v0.1.0.
 egui = "=0.36.1"
+mxm-dsp = { git = "https://github.com/mxm-audio/mxm-kit", branch = "main" }
 mxm-player = { git = "https://github.com/mxm-audio/mxm-player", branch = "main" }
 mxm-player-harness = { git = "https://github.com/mxm-audio/mxm-player", branch = "main" }
 mxm-plugin-test = { git = "https://github.com/mxm-audio/mxm-kit", branch = "main" }

@@ -305,11 +305,7 @@ impl ClapPlugin for MxmShimmer {
 nice_export_clap!(MxmShimmer);
 
 fn valid_sample_rate(sample_rate: f32) -> f32 {
-    if sample_rate.is_finite() {
-        sample_rate.clamp(8_000.0, 384_000.0)
-    } else {
-        48_000.0
-    }
+    mxm_dsp::guard::finite_or(sample_rate, 48_000.0).clamp(8_000.0, 384_000.0)
 }
 
 #[cfg(test)]

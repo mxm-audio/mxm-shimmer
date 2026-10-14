@@ -10,6 +10,7 @@
 //! which stops that limit cycle from settling at zero frequency.
 
 use crate::delay::{Delay, bounded, flush, follower_coefficient};
+use mxm_dsp::guard::finite_or;
 
 const LINES: usize = 8;
 const DIFFUSER_STAGES: usize = 16;
@@ -365,11 +366,7 @@ impl ReverbCore {
 }
 
 fn valid_rate(rate: f32) -> f32 {
-    if rate.is_finite() {
-        rate.clamp(8_000.0, 384_000.0)
-    } else {
-        48_000.0
-    }
+    finite_or(rate, 48_000.0).clamp(8_000.0, 384_000.0)
 }
 
 fn finite_unit(value: f32) -> f32 {

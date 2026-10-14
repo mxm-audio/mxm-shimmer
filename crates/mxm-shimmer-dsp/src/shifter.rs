@@ -7,6 +7,7 @@
 //! a reset click is not.
 
 use crate::delay::Delay;
+use mxm_dsp::guard::finite_or;
 use mxm_rng::{Xorshift32, map};
 
 const SWEEP_S: f32 = 0.070;
@@ -25,11 +26,7 @@ pub struct SweptShifter {
 
 impl SweptShifter {
     pub fn new(sample_rate: f32, seed: u32) -> Self {
-        let sample_rate = if sample_rate.is_finite() {
-            sample_rate.clamp(8_000.0, 384_000.0)
-        } else {
-            48_000.0
-        };
+        let sample_rate = finite_or(sample_rate, 48_000.0).clamp(8_000.0, 384_000.0);
         let seed = seed.max(1);
         Self {
             delay: Delay::new(((BASE_S + SWEEP_S + JITTER_S) * sample_rate).ceil() as usize + 4),

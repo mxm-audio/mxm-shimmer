@@ -10,4 +10,6 @@ repository.workspace = true
 
 [dependencies]
 # The shifters' grain jitter; dependency-free at this floor.
+# The finite guard and the delay line; dependency-free at this floor.
+mxm-dsp.workspace = true
 mxm-rng.workspace = true

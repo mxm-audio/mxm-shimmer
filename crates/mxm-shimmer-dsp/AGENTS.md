@@ -5,7 +5,7 @@ Parent: [`../../AGENTS.md`](../../AGENTS.md) · The measurements and reasoning b
 
 # Purpose
 
-Framework-free DSP for `mxm-shimmer`, depending only on `mxm-rng`: a stereo cascaded-allpass/feedback-delay-
+Framework-free DSP for `mxm-shimmer`, depending only on `mxm-rng` and `mxm-dsp`: a stereo cascaded-allpass/feedback-delay-
 network reverb with a gated swept-delay pitch shifter on the outer Input tap, Regen tap, or both.
 
 Technique evidence: `research:effects/shimmer-reverb.md`. The installed-binary study at
@@ -95,13 +95,14 @@ must produce the same samples and no old tail may return.
 
 ## Realtime and numeric rules
 
-- Rust MSRV is 1.87; the one dependency is `mxm-rng`, dependency-free at that floor. Take no other.
+- Rust MSRV is 1.87; the dependencies are `mxm-rng` and `mxm-dsp`, dependency-free at that floor. Take no other.
 - Allocate only in constructors. `process()` and all methods it calls are allocation-, lock-, log-
   and I/O-free.
 - Host block boundaries do not enter the model. Outer recursion is one sample, so output must be
   bit-identical under any partition of the same sample stream.
 - Delay storage sizes derive from the validated sample rate. Fractional reads split time into an
-  integer age and a fraction **before** wrapping. Reset invalidates delay history in constant time.
+  integer age and a fraction **before** wrapping (the lines are `mxm_dsp::delay::AgeLine`s). Reset
+  invalidates delay history in constant time.
   Cutoffs are ordered below 0.45 × sample rate.
 - **Every follower is a time, and no fixed per-sample coefficient may replace one**: the core's
   `level` and the engine's `activity` go through `delay::follower_coefficient`, computed in `new()`;

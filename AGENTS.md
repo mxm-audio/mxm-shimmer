@@ -141,7 +141,7 @@ locally (*Verification*).
 
 | Crate | MSRV | Why |
 |---|---|---|
-| `crates/mxm-shimmer-dsp` | **1.87** | One dependency, the dependency-free `mxm-rng` (the grain jitter's generator); the bounded delay-bank reverb, swept-delay shifters and outer loop |
+| `crates/mxm-shimmer-dsp` | **1.87** | Two dependencies, the dependency-free `mxm-rng` (the grain jitter's generator) and `mxm-dsp` (the finite guard and the delay line); the bounded delay-bank reverb, swept-delay shifters and outer loop |
 | `plugins/mxm-shimmer` | **1.95** | Its editor pulls in egui; depends on `mxm-shimmer-dsp`, which stays at 1.87 |
 
 ## Licensing

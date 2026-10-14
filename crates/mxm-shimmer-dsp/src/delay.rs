@@ -1,65 +1,40 @@
 //! Allocation-free-at-audio-rate fractional delay lines.
 
+use mxm_dsp::delay::AgeLine;
+
+/// A fractional delay line: the collection's [`AgeLine`] (`mxm_dsp::delay`), with this crate's
+/// sizing, its clamp of a requested delay and its flush of every written sample.
 #[derive(Clone)]
-pub(crate) struct Delay {
-    data: Vec<f32>,
-    write: usize,
-    written: usize,
-}
+pub(crate) struct Delay(AgeLine);
 
 impl Delay {
     pub(crate) fn new(max_samples: usize) -> Self {
-        Self {
-            data: vec![0.0; max_samples.max(4) + 2],
-            write: 0,
-            written: 0,
-        }
+        Self(AgeLine::new(max_samples.max(4) + 2))
     }
 
+    /// The sample `delay_samples` behind, linearly interpolated; the line splits the integer age from
+    /// the fraction before it wraps (at high rates these buffers are tens of thousands of samples
+    /// long, and wrapping the whole position in `f32` could round a point onto the buffer's end).
     #[inline]
     pub(crate) fn read(&self, delay_samples: f32) -> f32 {
-        let len = self.data.len();
+        let len = self.0.capacity();
         let delay_samples = if delay_samples.is_finite() {
             delay_samples.clamp(1.0, (len - 2) as f32)
         } else {
             1.0
         };
-        // Split time into an integer age and a fractional interpolation before wrapping. At high
-        // sample rates these buffers are tens of thousands of samples long; wrapping the whole
-        // position in f32 can round a point just below `len` up to `len` and index past the buffer.
-        let newer_age = delay_samples.floor() as usize;
-        let fraction = delay_samples - newer_age as f32;
-        let older_age = newer_age + 1;
-        let newer = if newer_age <= self.written {
-            self.data[(self.write + len - newer_age) % len]
-        } else {
-            0.0
-        };
-        let older = if older_age <= self.written {
-            self.data[(self.write + len - older_age) % len]
-        } else {
-            0.0
-        };
-        newer + fraction * (older - newer)
+        self.0.read_linear(delay_samples)
     }
 
     #[inline]
     pub(crate) fn write(&mut self, sample: f32) {
-        self.data[self.write] = flush(sample);
-        self.write += 1;
-        if self.write == self.data.len() {
-            self.write = 0;
-        }
-        if self.written < self.data.len() {
-            self.written += 1;
-        }
+        self.0.push(flush(sample));
     }
 
+    /// Invalidating history is constant-time. Discrete automation can reset shifters from the audio
+    /// thread, so clearing a high-rate delay allocation here would create a latency spike.
     pub(crate) fn clear(&mut self) {
-        // Invalidating history is constant-time. Discrete automation can reset shifters from the
-        // audio thread, so clearing a high-rate delay allocation here would create a latency spike.
-        self.write = 0;
-        self.written = 0;
+        self.0.clear();
     }
 }
 
@@ -100,8 +75,10 @@ mod tests {
         delay.write(0.5);
         // In f32, `1 - 1.0001` wrapped by a roughly 50k-sample buffer rounds to exactly
         // the buffer length. The old interpolation then indexed one element past the allocation.
-        let old_position = (delay.write as f32 - 1.0001).rem_euclid(delay.data.len() as f32);
-        assert_eq!(old_position, delay.data.len() as f32);
+        // One write has moved the write index to 1.
+        let len = delay.0.capacity() as f32;
+        let old_position = (1.0f32 - 1.0001).rem_euclid(len);
+        assert_eq!(old_position, len);
         assert!(delay.read(1.0001).is_finite());
     }
 

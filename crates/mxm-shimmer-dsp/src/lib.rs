@@ -9,6 +9,7 @@ pub mod reverb;
 pub mod shifter;
 
 use delay::{Delay, bounded, flush, follower_coefficient};
+use mxm_dsp::guard::finite_or;
 use reverb::ReverbCore;
 use shifter::SweptShifter;
 
@@ -587,11 +588,7 @@ fn finite(value: f32, min: f32, max: f32) -> f32 {
 }
 
 fn valid_rate(value: f32) -> f32 {
-    if value.is_finite() {
-        value.clamp(8_000.0, 384_000.0)
-    } else {
-        48_000.0
-    }
+    finite_or(value, 48_000.0).clamp(8_000.0, 384_000.0)
 }
 
 #[derive(Clone, Copy, Default)]
