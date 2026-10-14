@@ -81,10 +81,7 @@ impl NiceEguiApp for MxmShimmerApp {
         gui_context: GuiContext,
         _frame: &mut nice_plug_egui::Frame,
     ) -> Result<(), nice_plug_egui::baseview::HandlerError> {
-        mxm_ui::theme::apply(&context);
-        mxm_ui::typography::apply(&context);
-        context.set_theme(mxm_ui::theme::preference());
-        mxm_ui::navigation::use_shared_keymap(&context);
+        mxm_ui::shell::install(&context);
         self.gui_context = Some(gui_context);
         Ok(())
     }
@@ -121,9 +118,7 @@ pub fn panel(
     let tokens = tokens_for(ui);
     ui.ctx()
         .request_repaint_after(std::time::Duration::from_millis(50));
-    let peak = telemetry.meter.take();
     let shimmer = telemetry.take_shimmer();
-    let clipped = telemetry.meter.clipped();
 
     // One question, and both layers suspend on it: the paging renderer's `hold` and the cursor's
     // `inert` both ask whether another surface owns this frame's keyboard.
@@ -139,9 +134,7 @@ pub fn panel(
         &tokens,
         |ui| mxm_preset::ui::preset_row(ui, &tokens, params, setter, presets),
         |ui| {
-            if mxm_ui::shell::level_meter(ui, &tokens, peak, clipped) {
-                telemetry.meter.clear_clip();
-            }
+            mxm_ui::shell::peak_meter(ui, &tokens, &telemetry.meter);
             mxm_ui::shell::zoom_control(ui);
             mxm_ui::shell::editor_theme_control(ui);
         },
