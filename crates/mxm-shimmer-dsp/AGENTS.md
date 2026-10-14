@@ -5,7 +5,7 @@ Parent: [`../../AGENTS.md`](../../AGENTS.md) · The measurements and reasoning b
 
 # Purpose
 
-Framework-free, zero-dependency DSP for `mxm-shimmer`: a stereo cascaded-allpass/feedback-delay-
+Framework-free DSP for `mxm-shimmer`, depending only on `mxm-rng`: a stereo cascaded-allpass/feedback-delay-
 network reverb with a gated swept-delay pitch shifter on the outer Input tap, Regen tap, or both.
 
 Technique evidence: `research:effects/shimmer-reverb.md`. The installed-binary study at
@@ -95,7 +95,7 @@ must produce the same samples and no old tail may return.
 
 ## Realtime and numeric rules
 
-- Rust MSRV is 1.87; keep the crate zero-dependency.
+- Rust MSRV is 1.87; the one dependency is `mxm-rng`, dependency-free at that floor. Take no other.
 - Allocate only in constructors. `process()` and all methods it calls are allocation-, lock-, log-
   and I/O-free.
 - Host block boundaries do not enter the model. Outer recursion is one sample, so output must be

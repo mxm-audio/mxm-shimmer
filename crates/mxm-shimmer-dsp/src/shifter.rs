@@ -7,6 +7,7 @@
 //! a reset click is not.
 
 use crate::delay::Delay;
+use mxm_rng::{Xorshift32, map};
 
 const SWEEP_S: f32 = 0.070;
 const BASE_S: f32 = 0.012;
@@ -19,7 +20,7 @@ pub struct SweptShifter {
     phase: f32,
     jitter: f32,
     seed: u32,
-    rng: u32,
+    rng: Xorshift32,
 }
 
 impl SweptShifter {
@@ -37,7 +38,7 @@ impl SweptShifter {
             phase: 0.5,
             jitter: 0.0,
             seed,
-            rng: seed,
+            rng: Xorshift32::from_state(seed),
         }
     }
 
@@ -45,7 +46,7 @@ impl SweptShifter {
         self.delay.clear();
         self.phase = 0.5;
         self.jitter = 0.0;
-        self.rng = self.seed;
+        self.rng = Xorshift32::from_state(self.seed);
     }
 
     /// The shifter's worst instantaneous gain. The Hann gate peaks at exactly one.
@@ -93,10 +94,7 @@ impl SweptShifter {
         self.phase += increment;
         if self.phase >= 1.0 {
             self.phase -= self.phase.floor();
-            self.rng ^= self.rng << 13;
-            self.rng ^= self.rng >> 17;
-            self.rng ^= self.rng << 5;
-            let unit = self.rng as f32 / u32::MAX as f32;
+            let unit = map::unit_f32_word(self.rng.next_u32());
             self.jitter = unit * JITTER_S * self.sample_rate;
         }
         read * window

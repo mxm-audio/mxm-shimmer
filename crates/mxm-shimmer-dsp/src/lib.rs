@@ -1260,10 +1260,9 @@ mod tests {
     fn stimulus_at(rate: f32, seconds: f32) -> Vec<(f32, f32)> {
         let n = (rate * seconds) as usize;
         let mut out = Vec::with_capacity(n);
-        let mut state = 12_345u32;
+        let mut rng = mxm_rng::Lcg32::new(12_345);
         for i in 0..n {
-            state = state.wrapping_mul(1_664_525).wrapping_add(1_013_904_223);
-            let noise = (state >> 9) as f32 / 8_388_608.0 - 1.0;
+            let noise = (rng.next_u32() >> 9) as f32 / 8_388_608.0 - 1.0;
             let t = i as f32 / rate;
             out.push((
                 0.5 * (t * 220.0 * core::f32::consts::TAU).sin() + 0.1 * noise,

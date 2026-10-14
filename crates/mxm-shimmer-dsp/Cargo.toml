@@ -9,3 +9,5 @@ authors.workspace = true
 repository.workspace = true
 
 [dependencies]
+# The shifters' grain jitter; dependency-free at this floor.
+mxm-rng.workspace = true
