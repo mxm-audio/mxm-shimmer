@@ -302,7 +302,36 @@ impl ClapPlugin for MxmShimmer {
     ];
 }
 
+impl Vst3Plugin for MxmShimmer {
+    /// Permanent, as `CLAP_ID` is: the CLAP id's hash written out, held to it by
+    /// `identity::the_vst3_class_id_is_the_clap_ids_hash`.
+    const VST3_CLASS_ID: [u8; 16] = [
+        0x3d, 0x0d, 0x07, 0x74, 0x39, 0x76, 0x98, 0x70, 0x5f, 0x1d, 0x83, 0x8d, 0x2f, 0x4a, 0x06,
+        0x0a,
+    ];
+    const VST3_SUBCATEGORIES: &'static [Vst3SubCategory] =
+        &[Vst3SubCategory::Fx, Vst3SubCategory::Reverb];
+}
+
 nice_export_clap!(MxmShimmer);
+nice_export_vst3!(MxmShimmer);
+
+/// The plugin's identity in each format.
+#[cfg(test)]
+mod identity {
+    use super::MxmShimmer;
+    use mxm_plugin_test::formats;
+
+    #[test]
+    fn the_vst3_class_id_is_the_clap_ids_hash() {
+        formats::the_vst3_class_id_is_the_clap_ids_hash::<MxmShimmer>();
+    }
+
+    #[test]
+    fn the_vst3_categories_follow_the_clap_features() {
+        formats::the_vst3_categories_follow_the_clap_features::<MxmShimmer>();
+    }
+}
 
 fn valid_sample_rate(sample_rate: f32) -> f32 {
     mxm_dsp::guard::finite_or(sample_rate, 48_000.0).clamp(8_000.0, 384_000.0)
