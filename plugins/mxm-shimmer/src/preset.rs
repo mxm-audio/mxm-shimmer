@@ -46,8 +46,13 @@ impl mxm_preset::Instrument for MxmShimmerParams {
         &self.preset
     }
 
-    fn factory_files(&self) -> &'static [(&'static str, &'static str)] {
+    /// The installed set, but in a unit test, which is loaded from no bundle: the repository's.
+    #[cfg(test)]
+    fn factory_files(&self) -> Vec<(String, String)> {
         FACTORY_FILES
+            .iter()
+            .map(|(name, json)| ((*name).to_owned(), (*json).to_owned()))
+            .collect()
     }
 
     fn default_missing_legacy_parameter(&self, id: &str) -> bool {
@@ -55,26 +60,22 @@ impl mxm_preset::Instrument for MxmShimmerParams {
     }
 }
 
-pub const FACTORY_FILES: &[(&str, &str)] = &[
-    (
-        "Ascending hall",
-        include_str!("../presets/ascending-hall.json"),
-    ),
-    ("Input halo", include_str!("../presets/input-halo.json")),
-    ("Dual orbit", include_str!("../presets/dual-orbit.json")),
-    ("Fifth heaven", include_str!("../presets/fifth-heaven.json")),
-    ("Two octaves", include_str!("../presets/two-octaves.json")),
-    (
-        "Reverse bloom",
-        include_str!("../presets/reverse-bloom.json"),
-    ),
-    ("Dark ascent", include_str!("../presets/dark-ascent.json")),
-    ("Air chapel", include_str!("../presets/air-chapel.json")),
-    ("Small glass", include_str!("../presets/small-glass.json")),
-    ("Long bloom", include_str!("../presets/long-bloom.json")),
-    ("Plain hall", include_str!("../presets/plain-hall.json")),
-    ("Wide wash", include_str!("../presets/wide-wash.json")),
-];
+/// The factory set as it ships, `(name, json)` in its order: the repository's `presets/`, which
+/// is installed beside the plugin and read there (`mxm_preset::installed_factory_dir`). For the
+/// tests, the integration tests and the audits, which are loaded from no bundle; the plugin itself
+/// never reads it.
+pub static FACTORY_FILES: std::sync::LazyLock<Vec<(&'static str, &'static str)>> =
+    std::sync::LazyLock::new(|| {
+        let folder = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("presets");
+        mxm_preset::read_factory_dir(&folder)
+            .into_iter()
+            .map(|(file, json)| {
+                let name = mxm_preset::Preset::parse(&json, crate::CLAP_ID)
+                    .map_or(file, |preset| preset.name);
+                (&*String::leak(name), &*String::leak(json))
+            })
+            .collect()
+    });
 
 #[cfg(test)]
 mod tests {
@@ -563,7 +564,7 @@ mod tests {
     #[test]
     fn every_factory_preset_is_complete_and_categorised() {
         let params = MxmShimmerParams::default();
-        for (name, text) in FACTORY_FILES {
+        for (name, text) in FACTORY_FILES.iter() {
             let preset = Preset::parse(text, crate::CLAP_ID).expect(name);
             assert_ne!(preset.category, Category::Uncategorised, "{name}");
             assert!(preset.resolve(&params).1.is_empty(), "{name} is incomplete");
